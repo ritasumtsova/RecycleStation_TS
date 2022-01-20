@@ -1,4 +1,4 @@
-export default interface IRecycle {
+export default interface IRecycle {   /// add Plastic???
     name: string;
     recyclingCount: number;
 }

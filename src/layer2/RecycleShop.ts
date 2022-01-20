@@ -22,31 +22,28 @@ export default class RecycleShop  implements IRecycleShopRecycleStation, IRecycl
     }
 
     public addGoods (goods: string): void {
-        this.__goods.push(goods);
-
-        // if (this.__goods.length < 3) {
-        // } else {
-        //     new Error('The storage is full');
-        // }
+        if (this.__goods.length < 3) {
+            this.__goods.push(goods);
+        } else {
+            new Error('The storage is full');
+        }
     }
 
-    // public addGoodsCallback (goods: string, callback): void {
-    //     setTimeout(
-    //         function () {
-    //           let error;
-    //           let data;
+    public addGoodsCallback (goods: string, callback: (error?: Error, data?: string[]) => void): void {
+        setTimeout(() => {
+            let error!: Error;
+            let data!: string[];
       
-    //           if (this.__goods.length < 3) {
-    //               this.__goods.push(goods);
-    //               data = this.__goods;
-    //           } else {
-    //               error = new Error('The storage is full');
-    //           }
+            if (this.__goods.length < 3) {
+                this.__goods.push(goods);
+                data = this.__goods;
+            } else {
+                error = new Error('The storage is full');
+            }
       
-    //           callback(error, data);
-    //         }.bind(this), 3000
-    //       );
-    // }
+            callback(error, data);
+        }, 3000);
+    }
 
     public buyGoods (goods: string): string | null { ///?????
         const purchase = this.__goods.find(good => good === goods);

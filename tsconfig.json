@@ -2,17 +2,17 @@
     "compilerOptions": {
         "target": "ES6",
         "removeComments": true,
-        "outDir": "dist",
+        "outDir": "./dist",
         "sourceMap": true,
-        "outFile" : "dist/index.js",
+        //"outFile" : "dist/index.js",
         "noEmitOnError": true,
-        "module": "AMD",
+        "module": "UMD",
         "strict": true,
+        "esModuleInterop": true,
+        "rootDir": "./src"
     },
 
     "include": [
         "src",
     ],
-
-    "lib": ["es2015"]
 }
