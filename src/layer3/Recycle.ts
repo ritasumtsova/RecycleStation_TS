@@ -1,6 +1,6 @@
 import IRecycle from "../layer1/IRecycle";
 
-export default class Recycle implements IRecycle { /// abstract??
+export default class Recycle implements IRecycle { /// abstract
     protected _name: string;
     protected _recyclingCount: number;
 

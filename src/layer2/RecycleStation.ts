@@ -3,51 +3,51 @@ import IRecycleStation from "../layer1/IRecycleStation";
 import IRecycleShopRecycleStation from "./IRecycleShopRecycleStation";
 
 export default class RecycleStation implements IRecycleStation {
-    private __phone: string;
-    private __adress: string;
-    private __isOpen: boolean;
-    private __recycles: IRecycle[];
-    private __recycleShop: IRecycleShopRecycleStation | null;
+    private _phone: string;
+    private _adress: string;
+    private _isOpen: boolean;
+    private _recycles: IRecycle[];
+    private _recycleShop: IRecycleShopRecycleStation | null;
     
     public constructor (phone: string, adress: string) {
-        this.__phone = phone;
-        this.__adress = adress;
-        this.__isOpen = false;
-        this.__recycles = [];
-        this.__recycleShop = null;
+        this._phone = phone;
+        this._adress = adress;
+        this._isOpen = false;
+        this._recycles = [];
+        this._recycleShop = null;
     }
 
     public get phone (): string {
-        return this.__phone;
+        return this._phone;
     }
 
     public set phone (phone: string) {
-        this.__phone = phone;
+        this._phone = phone;
     }
 
     public get adress (): string {
-        return this.__adress;
+        return this._adress;
     }
 
     public set adress (adress: string) {
-        this.__adress = adress;
+        this._adress = adress;
     }
 
     public get isOpen (): boolean {
-        return this.__isOpen;
+        return this._isOpen;
     }
 
     public changeIsOpen (): void {
-        this.__isOpen = !this.__isOpen;
+        this._isOpen = !this._isOpen;
     }
 
     public get recycles (): IRecycle[] {
-        return this.__recycles;
+        return this._recycles;
     }
 
     public addRecycle (recycle: IRecycle): boolean {
-        if (this.__isOpen) {
-            this.__recycles.push(recycle);
+        if (this._isOpen) {
+            this._recycles.push(recycle);
             return true;
         } else {
             return false;
@@ -55,35 +55,35 @@ export default class RecycleStation implements IRecycleStation {
     }
 
     public set recycleShop (recycleShop: IRecycleShopRecycleStation) {
-        this.__recycleShop = recycleShop;
+        this._recycleShop = recycleShop;
     }
 
     public makeGoods (): string {
-        if(this.__recycles.length > 0 && this.__recycleShop) {
-            for (let recycle of this.__recycles) {
+        if(this._recycles.length > 0 && this._recycleShop) {
+            for (let recycle of this._recycles) {
                 switch (recycle.name.toLowerCase()) {
                     case 'plastic':
                         if (recycle.recyclingCount < 4) {
-                            this.__recycleShop.addGoods(`clothes${this.__recycles.indexOf(recycle)}`);
-                        };
+                            this._recycleShop.addGoods(`clothes${this._recycles.indexOf(recycle)}`);
+                        }
                         break;
                     case 'glass':
-                        this.__recycleShop.addGoods(`tableware${this.__recycles.indexOf(recycle)}`);
+                        this._recycleShop.addGoods(`tableware${this._recycles.indexOf(recycle)}`);
                         break;
                     case 'paper':
                         if (recycle.recyclingCount < 7) {
-                            this.__recycleShop.addGoods(`notebook${this.__recycles.indexOf(recycle)}`);
-                        };
+                            this._recycleShop.addGoods(`notebook${this._recycles.indexOf(recycle)}`);
+                        }
                     break;
                     default: 
-                        return `${recycle.name} cannot be recycle. Burn it.`; //${recycle.color} 
+                        return `${recycle.name} cannot be recycle. Burn it.`; 
                 }
             };
     
-            this.__recycles = [];
+            this._recycles = [];
             return 'success';
         } else {
-            return 'Recycle station has no recycles to make the goods.'
+            return 'Recycle station has no recycles to make the goods.';
         }
     }
 }

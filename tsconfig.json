@@ -1,15 +1,18 @@
 {
     "compilerOptions": {
-        "target": "ES6",
+        "target": "ES5",
+        "lib": ["ES6", "DOM", "ScriptHost"],
         "removeComments": true,
         "outDir": "./dist",
-        "sourceMap": true,
+        //"sourceMap": true,
         //"outFile" : "dist/index.js",
         "noEmitOnError": true,
-        "module": "UMD",
+        "module": "AMD", // AMD for browsers , UMD for node.js
         "strict": true,
         "esModuleInterop": true,
-        "rootDir": "./src"
+        "rootDir": "./src",
+        //"watch": true,
+        "forceConsistentCasingInFileNames": true,
     },
 
     "include": [

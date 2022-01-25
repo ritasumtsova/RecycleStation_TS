@@ -2,41 +2,41 @@ import IRecycleShopUser from "../layer1/IRecycleShopUser";
 import IRecycleShopRecycleStation from "./IRecycleShopRecycleStation";
 
 export default class RecycleShop  implements IRecycleShopRecycleStation, IRecycleShopUser {
-    private __phone: string;
-    private __goods: string[] = []; /// readonly????
+    private _phone: string;
+    private _goods: string[] = [];
 
     public constructor (phone: string) {
-        this.__phone = phone;
+        this._phone = phone;
     }
 
     public get phone (): string {
-        return this.__phone;
+        return this._phone;
     }
 
     public set phone (phone: string) {
-        this.__phone = phone;
+        this._phone = phone;
     }
 
     public get goods (): string[] {
-        return this.__goods;
+        return this._goods;
     }
 
     public addGoods (goods: string): void {
-        if (this.__goods.length < 3) {
-            this.__goods.push(goods);
+        if (this._goods.length < 3) {
+            this._goods.push(goods);
         } else {
             new Error('The storage is full');
         }
     }
 
-    public addGoodsCallback (goods: string, callback: (error?: Error, data?: string[]) => void): void {
+    public addGoodsCallback (goods: string, callback: (error: Error | undefined, data?: string[]) => void): void {
         setTimeout(() => {
             let error!: Error;
             let data!: string[];
       
-            if (this.__goods.length < 3) {
-                this.__goods.push(goods);
-                data = this.__goods;
+            if (this._goods.length < 3) {
+                this._goods.push(goods);
+                data = this._goods;
             } else {
                 error = new Error('The storage is full');
             }
@@ -45,11 +45,24 @@ export default class RecycleShop  implements IRecycleShopRecycleStation, IRecycl
         }, 3000);
     }
 
-    public buyGoods (goods: string): string | null { ///?????
-        const purchase = this.__goods.find(good => good === goods);
+    public addGoodsPromise (goods: string): Promise<Array<string>> {
+        return new Promise((resolve, reject) => { 
+            setTimeout(() => {
+                if(this._goods.length < 3) {
+                    this._goods.push(goods);
+                    resolve(this._goods);
+                } else {
+                    reject(new Error('The storage is full'));
+                }
+            }, 3000);
+        });
+    }
+
+    public buyGoods (goods: string): string | null {
+        const purchase: string | undefined = this._goods.find(good => good === goods);
 
         if (purchase) {
-            this.__goods.splice(this.__goods.indexOf(purchase), 1);
+            this._goods.splice(this._goods.indexOf(purchase), 1);
             return purchase;
         } else {
             return null;
