@@ -37,13 +37,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-define(["require", "exports", "./layer3/Plastic.js", "./layer2/RecycleShop.js", "./layer2/RecycleStation.js", "./layer1/User.js"], function (require, exports, Plastic_js_1, RecycleShop_js_1, RecycleStation_js_1, User_js_1) {
+(function (factory) {
+    if (typeof module === "object" && typeof module.exports === "object") {
+        var v = factory(require, exports);
+        if (v !== undefined) module.exports = v;
+    }
+    else if (typeof define === "function" && define.amd) {
+        define(["require", "exports", "./layer3/Plastic.js", "./layer2/RecycleShop.js", "./layer2/RecycleStation.js", "./layer1/User.js"], factory);
+    }
+})(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    Plastic_js_1 = __importDefault(Plastic_js_1);
-    RecycleShop_js_1 = __importDefault(RecycleShop_js_1);
-    RecycleStation_js_1 = __importDefault(RecycleStation_js_1);
-    User_js_1 = __importDefault(User_js_1);
+    var Plastic_js_1 = __importDefault(require("./layer3/Plastic.js"));
+    var RecycleShop_js_1 = __importDefault(require("./layer2/RecycleShop.js"));
+    var RecycleStation_js_1 = __importDefault(require("./layer2/RecycleStation.js"));
+    var User_js_1 = __importDefault(require("./layer1/User.js"));
     var greenPlastic = new Plastic_js_1.default('plastic', 2, 10, 'green');
     var bluePlastic = new Plastic_js_1.default('plastic', 1, 8, 'blue');
     var blackPlastic = new Plastic_js_1.default('plastic', 9, 34, 'black');
@@ -56,7 +64,6 @@ define(["require", "exports", "./layer3/Plastic.js", "./layer2/RecycleShop.js", 
     var user = new User_js_1.default('Rita', '+380939009090');
     recycleShop.addGoods('t-shirt');
     console.log(recycleStation);
-    console.log("111");
     var addGoodsAsyncAwait = function () { return __awaiter(void 0, void 0, void 0, function () {
         var data1, data2, data3, error_1;
         return __generator(this, function (_a) {

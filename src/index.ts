@@ -21,7 +21,6 @@ const user = new User('Rita', '+380939009090');
 
 
 recycleShop.addGoods('t-shirt');
-console.log(recycleStation);
 
 // CALLBACK INVOKE
 // recycleShop.addGoodsCallback('async table 1', (error, data) => {

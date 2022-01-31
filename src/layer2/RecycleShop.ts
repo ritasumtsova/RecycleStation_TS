@@ -46,7 +46,7 @@ export default class RecycleShop  implements IRecycleShopRecycleStation, IRecycl
     }
 
     public addGoodsPromise (goods: string): Promise<Array<string>> {
-        return new Promise((resolve, reject) => { 
+        return new Promise<Array<string>>((resolve, reject) => { 
             setTimeout(() => {
                 if(this._goods.length < 3) {
                     this._goods.push(goods);

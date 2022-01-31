@@ -7,7 +7,7 @@
         //"sourceMap": true,
         //"outFile" : "dist/index.js",
         "noEmitOnError": true,
-        "module": "AMD", // AMD for browsers , UMD for node.js
+        "module": "UMD", // AMD for browsers , UMD for node.js
         "strict": true,
         "esModuleInterop": true,
         "rootDir": "./src",
